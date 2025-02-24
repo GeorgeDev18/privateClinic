@@ -1,17 +1,20 @@
 package com.privateClinic.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 
 public class Invoice {
@@ -19,15 +22,19 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "invoice_id")
-    private  long invoiceId;
+    @NotNull
+    @Column(name = "invoice_id", nullable = false)
+    private  Long invoiceId;
 
-    @Column(columnDefinition = "DATE")
+    @NotNull
+    @Column(nullable = false)
     private LocalDateTime date;
 
+    @NotNull
+    @Column(nullable = false)
     private BigDecimal total;
 
-
+    @NotNull
     @OneToOne(targetEntity = MedicalAppointment.class)
     @JoinColumn(name = "appointment_id", nullable = false)
     private  MedicalAppointment medicalAppointment;

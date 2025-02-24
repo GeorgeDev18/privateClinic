@@ -1,16 +1,19 @@
 package com.privateClinic.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"packages"})
+@EqualsAndHashCode(exclude = {"packages"})
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "medical_service")
 public class MedicalService {
@@ -18,16 +21,27 @@ public class MedicalService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "service_id")
-    private long serviceId;
+    @NotNull
+    @Column(name = "service_id", nullable = false)
+    private Long serviceId;
 
-    @Column(name = "service_code")
+    @NotNull
+    @Column(name = "service_code",nullable = false)
     private String serviceCode;
 
+    @NotNull
+    @Column(nullable = false)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
     private String description;
+
+    @NotNull
+    @Column(nullable = false)
     private BigDecimal price;
 
+    @NotNull
     @ManyToMany(mappedBy = "services", fetch = FetchType.LAZY)
     private List<MedicalPackage> packages;
 

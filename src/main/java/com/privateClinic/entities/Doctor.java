@@ -1,24 +1,27 @@
 package com.privateClinic.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class Doctor extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
 
     @Column(name = "doctor_id")
-    private long doctorId;
-    private String Speciality;
+    private Long doctorId;
+    private String speciality;
     private String shift;
     private BigDecimal salary;
 }

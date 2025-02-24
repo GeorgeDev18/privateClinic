@@ -1,51 +1,66 @@
 package com.privateClinic.entities;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name= "medical_appointment")
 public class MedicalAppointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @EqualsAndHashCode.Include
     @Column(name = "appointment_id")
-    private long appointmentId;
+    private Long appointmentId;
 
-    @Column(columnDefinition = "DATE")
+    @NotNull
+    @Column(nullable = false)
     private LocalDate date;
 
-    @Column(columnDefinition = "TIME")
+    @NotNull
+    @Column(nullable = false)
     private LocalTime time;
 
+    @NotNull
+    @Column(nullable = false)
     private BigDecimal total;
 
-    @Column(name = "is_it_paid")
-    private  Boolean isItPaid;
+    @NotNull
+    @Column(name = "is_paid",nullable = false)
+    private  Boolean isPaid;
 
-    @ManyToOne(targetEntity = MedicalService.class)
+    @NotNull
+    @ManyToOne(targetEntity = MedicalService.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_service_id", nullable = false)
     private MedicalService medicalService;
 
-    @ManyToOne(targetEntity = MedicalPackage.class)
+    @NotNull
+    @ManyToOne(targetEntity = MedicalPackage.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_package_id", nullable = false)
     private  MedicalPackage medicalPackage;
 
-    @ManyToOne(targetEntity = Patient.class)
+    @NotNull
+    @ManyToOne(targetEntity = Patient.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", nullable = false)
     private  Patient patient;
 
-    @ManyToOne(targetEntity = Doctor.class)
+    @NotNull
+    @ManyToOne(targetEntity = Doctor.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", nullable = false)
     private  Doctor doctor;
 
