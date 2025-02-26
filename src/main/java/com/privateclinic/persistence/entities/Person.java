@@ -1,4 +1,4 @@
-package com.privateClinic.entities;
+package com.privateclinic.persistence.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

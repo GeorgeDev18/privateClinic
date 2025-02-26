@@ -1,7 +1,5 @@
-package com.privateClinic.entities;
+package com.privateclinic.persistence.entities;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
