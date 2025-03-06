@@ -1,21 +1,20 @@
 package com.privateclinic.service.interfaces;
 
 import com.privateclinic.persistence.entities.Patient;
+import com.privateclinic.presentation.dto.PatientDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface PatientService {
 
-    List<Patient> getAllPatients();
+    List<PatientDTO> getAllPatients();
 
-    Optional<Patient> getPatientById(Long patientId);
+    Optional<PatientDTO> getPatientById(Long patientId);
 
-    Patient savePatient(Patient patient);
+    PatientDTO savePatient(PatientDTO patientDTO);
 
-    Patient updatePatient(Long patientId, Patient updatedPatient);
+    PatientDTO updatePatient(Long patientId, PatientDTO updatedPatientDTO);
 
     void deletePatient(Long patientId);
-
-    List<Patient> findPatientsByMedicalInsuranceStatus(Boolean hasMedicalInsurance);
 }

@@ -1,6 +1,7 @@
 package com.privateclinic.service.interfaces;
 
 import com.privateclinic.persistence.entities.MedicalService;
+import com.privateclinic.presentation.dto.MedicalServiceDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,20 +9,19 @@ import java.util.Optional;
 
 public interface MedicalServiceService {
 
-    List<MedicalService> getAllMedicalServices();
+    List<MedicalServiceDTO> getAllMedicalServices();
 
-    Optional<MedicalService> getMedicalServiceById(Long serviceId);
+    Optional<MedicalServiceDTO> getMedicalServiceById(Long serviceId);
 
-    MedicalService saveMedicalService(MedicalService medicalService);
+    MedicalServiceDTO saveMedicalService(MedicalServiceDTO medicalServiceDTO);
 
-
-    MedicalService updateMedicalService(Long serviceId, MedicalService updatedService);
+    MedicalServiceDTO updateMedicalService(Long serviceId, MedicalServiceDTO updatedServiceDTO);
 
     void deleteMedicalService(Long serviceId);
 
-    Optional<MedicalService> findMedicalServiceByCode(String serviceCode);
+    Optional<MedicalServiceDTO> findMedicalServiceByCode(String serviceCode);
 
-    List<MedicalService> findMedicalServicesByName(String name);
+    List<MedicalServiceDTO> findMedicalServicesByName(String name);
 
-    List<MedicalService> findMedicalServicesByMaxPrice(BigDecimal price);
+    List<MedicalServiceDTO> findMedicalServicesByMaxPrice(BigDecimal price);
 }
