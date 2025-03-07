@@ -1,6 +1,7 @@
 package com.privateclinic.service.interfaces;
 
 import com.privateclinic.persistence.entities.MedicalAppointment;
+import com.privateclinic.presentation.dto.MedicalAppointmentDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,21 +9,21 @@ import java.util.Optional;
 
 public interface MedicalAppointmentService {
 
-    List<MedicalAppointment> getAllAppointments();
+    List<MedicalAppointmentDTO> getAllAppointments();
 
-    Optional<MedicalAppointment> getAppointmentById(Long appointmentId);
+    Optional<MedicalAppointmentDTO> getAppointmentById(Long appointmentId);
 
-    MedicalAppointment saveAppointment(MedicalAppointment medicalAppointment);
+    MedicalAppointmentDTO saveAppointment(MedicalAppointmentDTO medicalAppointmentDTO);
 
-    MedicalAppointment updateAppointment(Long appointmentId, MedicalAppointment updatedAppointment);
+    MedicalAppointmentDTO updateAppointment(Long appointmentId, MedicalAppointmentDTO updatedAppointmentDTO);
 
     void deleteAppointment(Long appointmentId);
 
-    List<MedicalAppointment> findAppointmentsByDate(LocalDate date);
+    List<MedicalAppointmentDTO> findAppointmentsByDate(LocalDate date);
 
-    List<MedicalAppointment> findAppointmentsByPaymentStatus(Boolean isPaid);
+    List<MedicalAppointmentDTO> findAppointmentsByPaymentStatus(Boolean isPaid);
 
-    List<MedicalAppointment> findAppointmentsByPatient(Long patientId);
+    List<MedicalAppointmentDTO> findAppointmentsByPatient(Long patientId);
 
-    List<MedicalAppointment> findAppointmentsByDoctor(Long doctorId);
+    List<MedicalAppointmentDTO> findAppointmentsByDoctor(Long doctorId);
 }

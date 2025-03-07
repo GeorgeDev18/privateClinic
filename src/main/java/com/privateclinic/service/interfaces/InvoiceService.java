@@ -1,6 +1,7 @@
 package com.privateclinic.service.interfaces;
 
 import com.privateclinic.persistence.entities.Invoice;
+import com.privateclinic.presentation.dto.InvoiceDTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -9,21 +10,21 @@ import java.util.Optional;
 
 public interface InvoiceService {
 
-    List<Invoice> getAllInvoices();
+    List<InvoiceDTO> getAllInvoices();
 
-    Optional<Invoice> getInvoiceById(Long invoiceId);
+    Optional<InvoiceDTO> getInvoiceById(Long invoiceId);
 
-    Invoice saveInvoice(Invoice invoice);
+    InvoiceDTO saveInvoice(InvoiceDTO invoiceDTO);
 
-    Invoice updateInvoice(Long invoiceId, Invoice updatedInvoice);
+    InvoiceDTO updateInvoice(Long invoiceId, InvoiceDTO updatedInvoiceDTO);
 
     void deleteInvoice(Long invoiceId);
 
     // Buscar una factura por el ID de la cita médica asociada
-    Optional<Invoice> findInvoiceByAppointmentId(Long appointmentId);
+    Optional<InvoiceDTO> findInvoiceByAppointmentId(Long appointmentId);
 
-    List<Invoice> findInvoicesByDate(LocalDateTime date);
+    List<InvoiceDTO> findInvoicesByDate(LocalDateTime date);
 
     // Buscar facturas con un monto total mayor o igual a un valor específico
-    List<Invoice> findInvoicesByMinTotal(BigDecimal total);
+    List<InvoiceDTO> findInvoicesByMinTotal(BigDecimal total);
 }
