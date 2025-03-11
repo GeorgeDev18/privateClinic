@@ -20,7 +20,6 @@ public class MedicalPackage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @NotNull
     @Column(name = "package_id", nullable = false)
     private Long packageId;
@@ -42,6 +41,7 @@ public class MedicalPackage {
     private  Integer discount;
 
 
+
     @ManyToMany(targetEntity = MedicalService.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(
             name = "package_service",
@@ -49,4 +49,8 @@ public class MedicalPackage {
             inverseJoinColumns = @JoinColumn(name = "service_id")
     )
     private List<MedicalService> services;
+
+
+
+
 }

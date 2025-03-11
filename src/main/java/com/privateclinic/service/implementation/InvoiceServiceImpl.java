@@ -53,8 +53,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         Invoice existingInvoice = invoiceRepository.findById(invoiceId)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found with ID: " + invoiceId));
 
-        existingInvoice.setDate(updatedInvoiceDTO.getDate());
-        existingInvoice.setTotal(updatedInvoiceDTO.getTotal());
+//        existingInvoice.setDate(updatedInvoiceDTO.getDate());
+//        existingInvoice.setTotal(updatedInvoiceDTO.getTotal());
 
         Invoice updatedInvoice = invoiceRepository.save(existingInvoice);
         return invoiceMapper.toDTO(updatedInvoice);

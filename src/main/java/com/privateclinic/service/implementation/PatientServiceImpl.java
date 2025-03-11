@@ -52,8 +52,8 @@ public class PatientServiceImpl implements PatientService {
         Patient existingPatient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new EntityNotFoundException("Patient not found with ID: " + patientId));
 
-        existingPatient.setName(updatedPatientDTO.getName());
-        existingPatient.setHasMedicalInsurance(updatedPatientDTO.getHasMedicalInsurance());
+//        existingPatient.setName(updatedPatientDTO.getName());
+//        existingPatient.setHasMedicalInsurance(updatedPatientDTO.getHasMedicalInsurance());
 
         Patient updatedPatient = patientRepository.save(existingPatient);
         return patientMapper.toDTO(updatedPatient);

@@ -52,10 +52,10 @@ public class MedicalServiceImpl implements MedicalServiceService {
         MedicalService existingService = medicalServiceRepository.findById(serviceId)
                 .orElseThrow(() -> new EntityNotFoundException("Medical Service not found with ID: " + serviceId));
 
-        existingService.setServiceCode(updatedServiceDTO.getServiceCode());
-        existingService.setName(updatedServiceDTO.getName());
-        existingService.setDescription(updatedServiceDTO.getDescription());
-        existingService.setPrice(updatedServiceDTO.getPrice());
+//        existingService.setServiceCode(updatedServiceDTO.getServiceCode());
+//        existingService.setName(updatedServiceDTO.getName());
+//        existingService.setDescription(updatedServiceDTO.getDescription());
+//        existingService.setPrice(updatedServiceDTO.getPrice());
 
         MedicalService updatedService = medicalServiceRepository.save(existingService);
         return medicalServiceMapper.toDTO(updatedService);

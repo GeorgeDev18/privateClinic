@@ -7,6 +7,7 @@ import com.privateclinic.presentation.dto.DoctorDTO;
 import com.privateclinic.service.interfaces.DoctorService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final DoctorMapper doctorMapper;
 
+    @Autowired
     public DoctorServiceImpl(DoctorRepository doctorRepository, DoctorMapper doctorMapper) {
         this.doctorRepository = doctorRepository;
         this.doctorMapper = doctorMapper;
@@ -51,9 +53,9 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor existingDoctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found with ID: " + doctorId));
 
-        existingDoctor.setSpeciality(updatedDoctorDTO.getSpeciality());
-        existingDoctor.setShift(updatedDoctorDTO.getShift());
-        existingDoctor.setSalary(updatedDoctorDTO.getSalary());
+//        existingDoctor.setSpeciality(updatedDoctorDTO.getSpeciality());
+//        existingDoctor.setShift(updatedDoctorDTO.getShift());
+//        existingDoctor.setSalary(updatedDoctorDTO.getSalary());
 
         Doctor updatedDoctor = doctorRepository.save(existingDoctor);
         return doctorMapper.toDTO(updatedDoctor);
@@ -78,6 +80,8 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<DoctorDTO> findDoctorsByShift(String shift) {
+
+
         return doctorRepository.findByShift(shift)
                 .stream()
                 .map(doctorMapper::toDTO)

@@ -52,10 +52,10 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService 
         MedicalAppointment existingAppointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new EntityNotFoundException("Medical Appointment not found with ID: " + appointmentId));
 
-        existingAppointment.setDate(updatedAppointmentDTO.getDate());
-        existingAppointment.setTime(updatedAppointmentDTO.getTime());
-        existingAppointment.setTotal(updatedAppointmentDTO.getTotal());
-        existingAppointment.setIsPaid(updatedAppointmentDTO.getIsPaid());
+//        existingAppointment.setDate(updatedAppointmentDTO.getDate());
+//        existingAppointment.setTime(updatedAppointmentDTO.getTime());
+//        existingAppointment.setTotal(updatedAppointmentDTO.getTotal());
+//        existingAppointment.setIsPaid(updatedAppointmentDTO.getIsPaid());
 
         MedicalAppointment updatedAppointment = appointmentRepository.save(existingAppointment);
         return appointmentMapper.toDTO(updatedAppointment);

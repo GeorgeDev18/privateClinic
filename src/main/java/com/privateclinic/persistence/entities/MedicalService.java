@@ -20,7 +20,6 @@ public class MedicalService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @NotNull
     @Column(name = "service_id", nullable = false)
     private Long serviceId;

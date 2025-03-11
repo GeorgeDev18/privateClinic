@@ -20,9 +20,9 @@ public interface MedicalPackageMapper {
     @Mapping(target = "services", ignore = true) // Evitamos cargar la lista completa
     MedicalPackage toEntity(MedicalPackageDTO medicalPackageDTO);
 
-    default List<Long> mapServices(MedicalPackage medicalPackage) {
-        return medicalPackage.getServices().stream()
-                .map(service -> service.getServiceId())
-                .collect(Collectors.toList());
-    }
+//    default List<Long> mapServices(MedicalPackage medicalPackage) {
+//        return medicalPackage.getServices().stream()
+//                .map(service -> service.getServiceId())
+//                .collect(Collectors.toList());
+//    }
 }

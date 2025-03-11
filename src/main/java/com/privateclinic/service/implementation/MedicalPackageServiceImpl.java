@@ -52,10 +52,10 @@ public class MedicalPackageServiceImpl implements MedicalPackageService {
         MedicalPackage existingPackage = medicalPackageRepository.findById(packageId)
                 .orElseThrow(() -> new EntityNotFoundException("Medical Package not found with ID: " + packageId));
 
-        existingPackage.setPackageCode(updatedPackageDTO.getPackageCode());
-        existingPackage.setName(updatedPackageDTO.getName());
-        existingPackage.setPrice(updatedPackageDTO.getPrice());
-        existingPackage.setDiscount(updatedPackageDTO.getDiscount());
+//        existingPackage.setPackageCode(updatedPackageDTO.getPackageCode());
+//        existingPackage.setName(updatedPackageDTO.getName());
+//        existingPackage.setPrice(updatedPackageDTO.getPrice());
+//        existingPackage.setDiscount(updatedPackageDTO.getDiscount());
 
         MedicalPackage updatedPackage = medicalPackageRepository.save(existingPackage);
         return medicalPackageMapper.toDTO(updatedPackage);

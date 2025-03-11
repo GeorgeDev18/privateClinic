@@ -15,13 +15,9 @@ import java.math.BigDecimal;
 @Entity
 public class Doctor extends Person{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-
-    @Column(name = "doctor_id")
-    private Long doctorId;
     private String speciality;
+
     private String shift;
+
     private BigDecimal salary;
 }

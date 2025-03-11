@@ -14,13 +14,6 @@ import lombok.*;
 @Entity
 public class Patient extends Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-
-    @Column(name = "patient_id")
-    private Long patientId;
-
     @Column(name = "has_medical_insurance")
     private  Boolean hasMedicalInsurance;
 
