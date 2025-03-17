@@ -1,6 +1,5 @@
 package com.privateclinic.service.interfaces;
 
-import com.privateclinic.persistence.entities.MedicalPackage;
 import com.privateclinic.presentation.dto.MedicalPackageDTO;
 
 import java.math.BigDecimal;

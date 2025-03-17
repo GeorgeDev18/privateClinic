@@ -1,6 +1,5 @@
 package com.privateclinic.service.interfaces;
 
-import com.privateclinic.persistence.entities.Patient;
 import com.privateclinic.presentation.dto.PatientDTO;
 
 import java.util.List;

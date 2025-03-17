@@ -1,6 +1,5 @@
 package com.privateclinic.service.interfaces;
 
-import com.privateclinic.persistence.entities.MedicalAppointment;
 import com.privateclinic.presentation.dto.MedicalAppointmentDTO;
 
 import java.time.LocalDate;

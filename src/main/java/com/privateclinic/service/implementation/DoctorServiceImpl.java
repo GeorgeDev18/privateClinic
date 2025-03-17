@@ -53,9 +53,6 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor existingDoctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found with ID: " + doctorId));
 
-//        existingDoctor.setSpeciality(updatedDoctorDTO.getSpeciality());
-//        existingDoctor.setShift(updatedDoctorDTO.getShift());
-//        existingDoctor.setSalary(updatedDoctorDTO.getSalary());
 
         Doctor updatedDoctor = doctorRepository.save(existingDoctor);
         return doctorMapper.toDTO(updatedDoctor);
