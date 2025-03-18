@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.List;
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -16,12 +17,27 @@ public class PatientDTO {
 
     private Long id;
 
-    @NotNull(message = "El nombre no puede ser nulo")
-    @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
+    @NotNull
     private String name;
 
-    @NotNull(message = "Debe especificar si el paciente tiene seguro médico")
+    @NotNull
+    private String surname;
+
+    @NotNull
+    private Long documentId;
+
+    @NotNull
+    private LocalDate dateOfBirth;
+
+    @NotNull
+    private String email;
+
+    @NotNull
+    private String address;
+
+    @NotNull
+    private Long phoneNumber;
+
     private Boolean hasMedicalInsurance;
 
-    private List<MedicalAppointmentDTO> appointments;
 }

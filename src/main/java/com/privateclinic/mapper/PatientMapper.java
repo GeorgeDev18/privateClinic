@@ -16,7 +16,7 @@ import org.mapstruct.factory.Mappers;
         PatientDTO toDTO(Patient patient);
 
 
-        @Mapping(target = "name", source = "name")
+
         Patient toEntity(PatientDTO patientDTO);
     }
 

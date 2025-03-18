@@ -10,12 +10,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@SequenceGenerator(name = "person_seq", sequenceName = "person_sequence", allocationSize = 1)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "person_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false, updatable = false)
     protected Long id;
 
