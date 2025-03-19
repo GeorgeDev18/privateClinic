@@ -3,9 +3,9 @@ package com.privateclinic.presentation.controller;
 
 import com.privateclinic.presentation.dto.PatientDTO;
 import com.privateclinic.service.PatientServiceImp;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO) {
+    public ResponseEntity<PatientDTO> createPatient(@Valid @RequestBody PatientDTO patientDTO) {
         PatientDTO savedPatient = patientServiceImp.savePatient(patientDTO);
         return ResponseEntity.ok(savedPatient);
     }

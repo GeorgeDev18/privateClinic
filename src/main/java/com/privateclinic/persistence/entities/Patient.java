@@ -12,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Patient extends Person {
 
     @Column(name = "has_medical_insurance")

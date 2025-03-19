@@ -10,40 +10,41 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type")
+@SequenceGenerator(name = "person_seq", sequenceName = "person_sequence", allocationSize = 1)
 public abstract class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @Column(updatable = false)
     protected Long id;
 
     @NotNull
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     protected String name;
 
     @NotNull
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     protected String surname;
 
     @NotNull
-    @Column(nullable = false, unique = true)
-    protected Long documentId;
+    @Column(name = "document_id")
+    protected String documentId;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "date_of_birth")
     protected LocalDate dateOfBirth;
 
     @NotNull
-    @Column(nullable = false, unique = true)
+    @Column( unique = true)
     protected String email;
 
     @NotNull
-    @Column(nullable = false)
     protected String address;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "phone_number")
     protected Long phoneNumber;
 
 }

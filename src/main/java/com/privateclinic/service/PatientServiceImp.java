@@ -41,6 +41,9 @@ public class PatientServiceImp implements PatientService {
 
     @Override
     public PatientDTO savePatient(PatientDTO patientDTO) {
+        if (patientDTO == null) {
+            throw new IllegalArgumentException("PatientDTO must not be null");
+        }
         Patient patient = patientMapper.toEntity(patientDTO);
         Patient savePatient = patientRepository.save(patient);
         return patientMapper.toDTO(savePatient);
@@ -51,8 +54,8 @@ public class PatientServiceImp implements PatientService {
         Patient existingPatient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new EntityNotFoundException("Patient not found with ID: " + patientId));
 
-//        existingPatient.setName(updatedPatientDTO.getName());
-//        existingPatient.setHasMedicalInsurance(updatedPatientDTO.getHasMedicalInsurance());
+        existingPatient.setName(updatedPatientDTO.getName());
+        existingPatient.setHasMedicalInsurance(updatedPatientDTO.getHasMedicalInsurance());
 
         Patient updatePatient = patientRepository.save(existingPatient);
 
