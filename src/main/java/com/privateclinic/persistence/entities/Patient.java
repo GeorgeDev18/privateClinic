@@ -3,14 +3,15 @@ package com.privateclinic.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class Patient extends Person {

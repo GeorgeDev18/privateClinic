@@ -55,6 +55,12 @@ public class PatientServiceImp implements PatientService {
                 .orElseThrow(() -> new EntityNotFoundException("Patient not found with ID: " + patientId));
 
         existingPatient.setName(updatedPatientDTO.getName());
+        existingPatient.setSurname(updatedPatientDTO.getSurname());
+        existingPatient.setDocumentId(updatedPatientDTO.getDocumentId());
+        existingPatient.setDateOfBirth(updatedPatientDTO.getDateOfBirth());
+        existingPatient.setEmail(updatedPatientDTO.getEmail());
+        existingPatient.setAddress(updatedPatientDTO.getAddress());
+        existingPatient.setPhoneNumber(updatedPatientDTO.getPhoneNumber());
         existingPatient.setHasMedicalInsurance(updatedPatientDTO.getHasMedicalInsurance());
 
         Patient updatePatient = patientRepository.save(existingPatient);

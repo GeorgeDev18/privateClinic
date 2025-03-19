@@ -23,13 +23,13 @@ public class PatientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PatientDTO>> getallPatients(){
+    public ResponseEntity<List<PatientDTO>> getAllPatients(){
         List<PatientDTO> patients = patientServiceImp.getAllPatients();
         return ResponseEntity.ok(patients);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PatientDTO> getPatientbyId (@PathVariable long id) {
+    public ResponseEntity<PatientDTO> getPatientById (@PathVariable long id) {
         Optional<PatientDTO> patient = patientServiceImp.getPatientById(id);
         return patient.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
