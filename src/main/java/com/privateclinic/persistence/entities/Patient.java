@@ -7,13 +7,12 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@Entity
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @SuperBuilder
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@PrimaryKeyJoinColumn(name = "id")
 public class Patient extends Person {
 
     @Column(name = "has_medical_insurance")
@@ -21,3 +20,6 @@ public class Patient extends Person {
 
 
 }
+
+
+

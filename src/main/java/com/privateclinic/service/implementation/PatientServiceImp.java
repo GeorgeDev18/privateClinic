@@ -1,11 +1,11 @@
-package com.privateclinic.service;
+package com.privateclinic.service.implementation;
 
+import com.privateclinic.exception.error.ElementNotFoundException;
 import com.privateclinic.mapper.PatientMapper;
 import com.privateclinic.persistence.entities.Patient;
 import com.privateclinic.persistence.repository.PatientRepository;
 import com.privateclinic.presentation.dto.PatientDTO;
 import com.privateclinic.service.interfaces.PatientService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +18,7 @@ public class PatientServiceImp implements PatientService {
 
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
+    private static final  String MESSAGE = "Patient not found with ID: %s";
 
     @Autowired
     public PatientServiceImp(PatientRepository patientRepository, PatientMapper patientMapper){
@@ -52,7 +53,7 @@ public class PatientServiceImp implements PatientService {
     @Override
     public PatientDTO updatePatient(Long patientId, PatientDTO updatedPatientDTO) {
         Patient existingPatient = patientRepository.findById(patientId)
-                .orElseThrow(() -> new EntityNotFoundException("Patient not found with ID: " + patientId));
+                .orElseThrow(() -> new ElementNotFoundException(String.format(MESSAGE, patientId ) ));
 
         existingPatient.setName(updatedPatientDTO.getName());
         existingPatient.setSurname(updatedPatientDTO.getSurname());
@@ -71,7 +72,7 @@ public class PatientServiceImp implements PatientService {
     @Override
     public void deletePatient(Long patientId) {
     if (!patientRepository.existsById(patientId)){
-        throw new EntityNotFoundException("Patient not found with ID " + patientId);
+        throw new ElementNotFoundException(String.format(MESSAGE , patientId) );
     }
     patientRepository.deleteById(patientId);
     }
