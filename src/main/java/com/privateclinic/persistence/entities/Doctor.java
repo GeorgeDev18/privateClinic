@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
+@Entity
+@Builder
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
+@EqualsAndHashCode(callSuper = false)
 public class Doctor extends Person{
 
     private String speciality;

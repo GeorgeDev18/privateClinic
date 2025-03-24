@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @ToString
 @SuperBuilder
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Patient extends Person {
