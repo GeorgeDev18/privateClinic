@@ -1,46 +1,36 @@
 package com.privateclinic.persistence.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-
 import java.time.LocalDate;
 
 
 @Getter
 @Setter
 @Entity
-@SuperBuilder
-@NoArgsConstructor
-@AllArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
-    @SequenceGenerator(name = "person_seq", allocationSize = 1)
-    protected Long id;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     protected String name;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     protected String surname;
 
-    @Column(name = "document_id")
+    @Column(name = "document_id", nullable = false, unique = true)
     protected String documentId;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", nullable = false)
     protected LocalDate dateOfBirth;
 
-    @Column( unique = true)
+    @Column(nullable = false, unique = true)
     protected String email;
 
+    @Column(nullable = false)
     protected String address;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     protected Long phoneNumber;
 
 }
