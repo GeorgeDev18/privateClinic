@@ -45,7 +45,7 @@ public class DoctorDTO {
     private String speciality;
 
     @NotBlank(message = "El turno no puede ser nulo")
-    @Pattern(regexp = "^(Morning|Afternoon|Night)$", message = "El turno debe ser Mañana, Tarde o Noche")
+    @Pattern(regexp = "^(Mañana|Tarde|Noche)$", message = "El turno debe ser Mañana, Tarde o Noche")
     private String shift;
 
     @NotNull(message = "El salario no puede ser nulo")

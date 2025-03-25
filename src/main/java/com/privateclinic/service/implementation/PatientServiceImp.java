@@ -43,7 +43,7 @@ public class PatientServiceImp implements PatientService {
     @Override
     public PatientDTO savePatient(PatientDTO patientDTO) {
         if (patientDTO == null) {
-            throw new IllegalArgumentException("PatientDTO must not be null");
+            throw new IllegalArgumentException("Patient must not be null");
         }
         Patient patient = patientMapper.toEntity(patientDTO);
         Patient savePatient = patientRepository.save(patient);

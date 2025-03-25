@@ -1,24 +1,25 @@
 package com.privateclinic.service.implementation;
 
+import com.privateclinic.exception.error.ElementNotFoundException;
 import com.privateclinic.mapper.DoctorMapper;
 import com.privateclinic.persistence.entities.Doctor;
 import com.privateclinic.persistence.repository.DoctorRepository;
 import com.privateclinic.presentation.dto.DoctorDTO;
 import com.privateclinic.service.interfaces.DoctorService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class DoctorServiceImp implements DoctorService {
 
     private final DoctorRepository doctorRepository;
     private final DoctorMapper doctorMapper;
+    private static final  String MESSAGE = "Doctor not found with ID: %s";
 
     @Autowired
     public DoctorServiceImp(DoctorRepository doctorRepository, DoctorMapper doctorMapper) {
@@ -31,7 +32,7 @@ public class DoctorServiceImp implements DoctorService {
         return doctorRepository.findAll()
                 .stream()
                 .map(doctorMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -42,6 +43,9 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public DoctorDTO saveDoctor(DoctorDTO doctorDTO) {
+        if (doctorDTO == null) {
+            throw new IllegalArgumentException("doctor must not be null");
+        }
         Doctor doctor = doctorMapper.toEntity(doctorDTO);
         Doctor savedDoctor = doctorRepository.save(doctor);
         return doctorMapper.toDTO(savedDoctor);
@@ -51,7 +55,18 @@ public class DoctorServiceImp implements DoctorService {
     @Transactional
     public DoctorDTO updateDoctor(Long doctorId, DoctorDTO updatedDoctorDTO) {
         Doctor existingDoctor = doctorRepository.findById(doctorId)
-                .orElseThrow(() -> new EntityNotFoundException("Doctor not found with ID: " + doctorId));
+                .orElseThrow(() -> new ElementNotFoundException(String.format(MESSAGE, doctorId ) ));
+
+        existingDoctor.setName(updatedDoctorDTO.getName());
+        existingDoctor.setSurname(updatedDoctorDTO.getSurname());
+        existingDoctor.setDocumentId(updatedDoctorDTO.getDocumentId());
+        existingDoctor.setDateOfBirth(updatedDoctorDTO.getDateOfBirth());
+        existingDoctor.setEmail(updatedDoctorDTO.getEmail());
+        existingDoctor.setAddress(updatedDoctorDTO.getAddress());
+        existingDoctor.setPhoneNumber(updatedDoctorDTO.getPhoneNumber());
+        existingDoctor.setSpeciality(updatedDoctorDTO.getSpeciality());
+        existingDoctor.setSalary(updatedDoctorDTO.getSalary());
+        existingDoctor.setShift(updatedDoctorDTO.getShift());
 
 
         Doctor updatedDoctor = doctorRepository.save(existingDoctor);
@@ -59,10 +74,9 @@ public class DoctorServiceImp implements DoctorService {
     }
 
     @Override
-    @Transactional
     public void deleteDoctor(Long doctorId) {
         if (!doctorRepository.existsById(doctorId)) {
-            throw new EntityNotFoundException("Doctor not found with ID: " + doctorId);
+            throw  new ElementNotFoundException(String.format(MESSAGE, doctorId));
         }
         doctorRepository.deleteById(doctorId);
     }
@@ -72,7 +86,7 @@ public class DoctorServiceImp implements DoctorService {
         return doctorRepository.findBySpeciality(speciality)
                 .stream()
                 .map(doctorMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -82,6 +96,6 @@ public class DoctorServiceImp implements DoctorService {
         return doctorRepository.findByShift(shift)
                 .stream()
                 .map(doctorMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
