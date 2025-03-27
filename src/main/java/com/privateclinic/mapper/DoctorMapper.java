@@ -10,9 +10,8 @@ public interface DoctorMapper {
 
     DoctorMapper INSTANCE = Mappers.getMapper(DoctorMapper.class);
 
-    // Convierte de entidad a DTO
+
     DoctorDTO toDTO(Doctor doctor);
 
-    // Convierte de DTO a entidad
     Doctor toEntity(DoctorDTO doctorDTO);
 }

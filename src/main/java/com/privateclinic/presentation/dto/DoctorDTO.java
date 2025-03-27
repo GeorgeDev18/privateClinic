@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DoctorDTO {
 
-    private Long id;
+    private Long doctorId;
 
     @NotBlank(message = "El nombre es obligatorio")
     private String name;

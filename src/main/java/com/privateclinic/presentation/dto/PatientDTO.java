@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PatientDTO {
 
-    private Long id;
+    private Long patientId;
 
     @NotBlank(message = "El nombre es obligatorio")
     private String name;

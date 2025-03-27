@@ -18,10 +18,10 @@ import java.math.BigDecimal;
 public class Doctor extends Person{
 
     @Id
-    @Column(name = "id_doctor", nullable = false, updatable = false)
+    @Column(name = "doctor_id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_seq")
     @SequenceGenerator(name = "doctor_seq", sequenceName = "doctor_sequence", allocationSize = 1)
-    private Long id;
+    private Long doctorId;
 
     private String speciality;
 

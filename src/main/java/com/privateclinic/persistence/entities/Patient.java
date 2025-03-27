@@ -16,10 +16,10 @@ import lombok.experimental.SuperBuilder;
 public class Patient extends Person {
 
     @Id
-    @Column(name = "id_patient", nullable = false, updatable = false)
+    @Column(name = "patient_id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_seq")
     @SequenceGenerator(name = "patient_seq", sequenceName = "patient_sequence", allocationSize = 1)
-    private Long id;
+    private Long patientId;
 
     @Column(name = "has_medical_insurance")
     private  Boolean hasMedicalInsurance;
