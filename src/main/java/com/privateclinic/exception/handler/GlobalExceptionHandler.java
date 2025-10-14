@@ -1,9 +1,6 @@
 package com.privateclinic.exception.handler;
 
-import com.privateclinic.exception.error.BadRequestException;
-import com.privateclinic.exception.error.ConflictException;
-import com.privateclinic.exception.error.ElementNotFoundException;
-import com.privateclinic.exception.error.ApiError;
+import com.privateclinic.exception.error.*;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +31,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ApiError(HttpStatus.CONFLICT, ex.getMessage(), request.getRequestURI()), HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(NoDataFoundException.class)
+    public ResponseEntity<ApiError> handleNoDataFoundException(NoDataFoundException ex, HttpServletRequest request) {
+        return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI()), HttpStatus.NOT_FOUND);
+    }
+
+
     // --- Validation Exceptions ---
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -60,8 +63,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGenericException(Exception ex, HttpServletRequest request) {
-        ex.printStackT
-    race();
+        ex.printStackTrace();
         return new ResponseEntity<>(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.", request.getRequestURI()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

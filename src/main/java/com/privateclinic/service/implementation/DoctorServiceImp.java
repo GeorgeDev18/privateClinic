@@ -1,6 +1,7 @@
 package com.privateclinic.service.implementation;
 
 import com.privateclinic.exception.error.ElementNotFoundException;
+import com.privateclinic.exception.error.NoDataFoundException;
 import com.privateclinic.mapper.DoctorMapper;
 import com.privateclinic.persistence.entities.Doctor;
 import com.privateclinic.persistence.repository.DoctorRepository;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -29,17 +29,25 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public List<DoctorDTO> getAllDoctors() {
-        return doctorRepository.findAll()
+        List<DoctorDTO>doctors = doctorRepository.findAll()
                 .stream()
                 .map(doctorMapper::toDTO)
                 .toList();
+
+        if(doctors.isEmpty()){
+            throw new NoDataFoundException("No doctors found");
+        }
+
+        return doctors;
     }
 
     @Override
-    public Optional<DoctorDTO> getDoctorById(Long doctorId) {
+    public DoctorDTO getDoctorById(Long doctorId) {
         return doctorRepository.findById(doctorId)
-                .map(doctorMapper::toDTO);
+                .map(doctorMapper::toDTO)
+                .orElseThrow(() -> new ElementNotFoundException(String.format(MESSAGE,doctorId)));
     }
+
 
     @Override
     public DoctorDTO saveDoctor(DoctorDTO doctorDTO) {

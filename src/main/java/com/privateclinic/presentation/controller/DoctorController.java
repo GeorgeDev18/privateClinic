@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/doctors")
@@ -24,14 +23,13 @@ public class DoctorController {
     @GetMapping
     public ResponseEntity<List<DoctorDTO>> getAllDoctors(){
         List<DoctorDTO> doctors = doctorServiceImpl.getAllDoctors();
-        return doctors.isEmpty()?new ResponseEntity<>(HttpStatus.NO_CONTENT):new ResponseEntity<>(doctors,HttpStatus.OK);
+        return ResponseEntity.ok(doctors);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DoctorDTO> getDoctorById(@PathVariable Long id) {
-        Optional<DoctorDTO> doctor = doctorServiceImpl.getDoctorById(id);
-        return doctor.map(doctorDTO -> new ResponseEntity<>(doctorDTO,HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        DoctorDTO doctor = doctorServiceImpl.getDoctorById(id);
+        return ResponseEntity.ok(doctor);
     }
 
     @PostMapping
