@@ -36,6 +36,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NoContentException.class)
+    public ResponseEntity<ApiError> handleNoContent(NoContentException ex, HttpServletRequest request) {
+        return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI()), HttpStatus.NOT_FOUND);
+    }
+
+
 
     // --- Validation Exceptions ---
 
@@ -61,10 +67,10 @@ public class GlobalExceptionHandler {
 
     // --- Catch All ---
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleGenericException(Exception ex, HttpServletRequest request) {
-        ex.printStackTrace();
-        return new ResponseEntity<>(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.", request.getRequestURI()), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<ApiError> handleGenericException(Exception ex, HttpServletRequest request) {
+//        ex.printStackTrace();
+//        return new ResponseEntity<>(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.", request.getRequestURI()), HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }
 

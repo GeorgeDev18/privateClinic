@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface DoctorRepository extends ListCrudRepository <Doctor, Long> {
 
-    List<Doctor> findBySpeciality(String speciality);
+    List<Doctor> findBySpecialityIgnoreCase(String speciality);
 
 
-    List<Doctor> findByShift(String shift);
+    List<Doctor> findByShiftIgnoreCase(String shift);
 
 }

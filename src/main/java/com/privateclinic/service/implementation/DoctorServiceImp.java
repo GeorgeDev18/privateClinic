@@ -1,6 +1,7 @@
 package com.privateclinic.service.implementation;
 
 import com.privateclinic.exception.error.ElementNotFoundException;
+import com.privateclinic.exception.error.NoContentException;
 import com.privateclinic.exception.error.NoDataFoundException;
 import com.privateclinic.mapper.DoctorMapper;
 import com.privateclinic.persistence.entities.Doctor;
@@ -91,19 +92,29 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public List<DoctorDTO> findDoctorsBySpeciality(String speciality) {
-        return doctorRepository.findBySpeciality(speciality)
-                .stream()
+        List<Doctor> doctors = doctorRepository.findBySpecialityIgnoreCase(speciality);
+
+        if (doctors.isEmpty()) {
+            throw new NoContentException("No doctors found for speciality: " + speciality);
+        }
+
+        return doctors.stream()
                 .map(doctorMapper::toDTO)
                 .toList();
     }
+
 
     @Override
     public List<DoctorDTO> findDoctorsByShift(String shift) {
+        List<Doctor> doctors = doctorRepository.findByShiftIgnoreCase(shift);
 
+        if (doctors.isEmpty()) {
+            throw new NoContentException("No doctors found for shift: " + shift);
+        }
 
-        return doctorRepository.findByShift(shift)
-                .stream()
+        return doctors.stream()
                 .map(doctorMapper::toDTO)
                 .toList();
     }
+
 }

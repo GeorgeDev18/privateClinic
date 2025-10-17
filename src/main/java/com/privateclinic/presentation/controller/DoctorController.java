@@ -54,13 +54,14 @@ public class DoctorController {
     @GetMapping("/speciality/{speciality}")
     public ResponseEntity<List<DoctorDTO>> getDoctorsBySpeciality(@PathVariable String speciality) {
         List<DoctorDTO> doctors = doctorServiceImpl.findDoctorsBySpeciality(speciality);
-        return doctors.isEmpty()?new ResponseEntity<>(HttpStatus.NO_CONTENT):new ResponseEntity<>(doctors,HttpStatus.OK);
+        return ResponseEntity.ok(doctors);
     }
 
 
     @GetMapping("/shift/{shift}")
     public ResponseEntity<List<DoctorDTO>> getDoctorsByShift(@PathVariable String shift) {
         List<DoctorDTO> doctors = doctorServiceImpl.findDoctorsByShift(shift);
-        return doctors.isEmpty()?new ResponseEntity<>(HttpStatus.NO_CONTENT):new ResponseEntity<>(doctors,HttpStatus.OK);
+        return ResponseEntity.ok(doctors);
     }
+
 }
